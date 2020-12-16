@@ -6,6 +6,8 @@ using Actio.Api.Handlers;
 using Actio.Common.Events;
 using Actio.Common.Mongo;
 using Actio.Common.RabbitMq;
+using Actio.Services.Activities.Domain.Repositories;
+using Actio.Services.Activities.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,13 +31,19 @@ namespace Actio.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddRabbitMq(Configuration);
-            services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
-
-            //services.AddMvc();
+            //services.AddControllers();
             //services.AddRabbitMq(Configuration);
-            //services.AddScoped<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            //services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+
+            services.AddControllers();
+            services.AddLogging();
+            //services.AddJwt(Configuration);
+            services.AddRabbitMq(Configuration);
+            services.AddMongoDB(Configuration);
+            services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
+            //services.AddSingleton<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
+            //services.AddSingleton<IEventHandler<UserCreated>, UserCreatedHandler>();
+            services.AddSingleton<IActivityRepository, ActivityRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,7 +54,7 @@ namespace Actio.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
+            //app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
 
             app.UseHttpsRedirection();
 

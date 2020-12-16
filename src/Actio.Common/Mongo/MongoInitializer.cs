@@ -16,8 +16,7 @@ namespace Actio.Common.Mongo
         private readonly IMongoDatabase _database;
         private readonly IDatabaseSeeder _seeder;
 
-        public MongoInitializer(IMongoDatabase database, IDatabaseSeeder seeder,
-            IOptions<MongoOptions> options)
+        public MongoInitializer(IDatabaseSeeder seeder, IMongoDatabase database, IOptions<MongoOptions> options)
         {
             _database = database;
             _seeder = seeder;
