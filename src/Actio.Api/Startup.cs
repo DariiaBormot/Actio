@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Actio.Api.Handlers;
 using Actio.Common.Events;
+using Actio.Common.Mongo;
 using Actio.Common.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,6 +45,8 @@ namespace Actio.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
 
             app.UseHttpsRedirection();
 
