@@ -25,29 +25,16 @@ namespace Actio.Services.Activities
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
-            //services.AddLogging();
-            //services.AddMongoDB(Configuration);
-            //services.AddScoped<ICategoryRepository, CategoryRepository>();
-            //services.AddScoped<IActivityRepository, ActivityRepository>();
-            //services.AddScoped<IDatabaseSeeder, CustomMongoSeeder>();
-            //services.AddRabbitMq(Configuration);
-            //services.AddSingleton<ICommandHandler<CreateActivity>, CreateActivityHandler>();
+
             services.AddControllers();
-
             services.AddLogging();
-
             services.AddMongoDB(Configuration);
-
-            // Our custom configuration of RMQ.
             services.AddRabbitMq(Configuration);
-
-            // Link handlers interfaces with handlers.
             services.AddSingleton<ICommandHandler<CreateActivity>, CreateActivityHandler>();
             services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<IActivityRepository, ActivityRepository>();
             services.AddSingleton<IDatabaseSeeder, CustomMongoSeeder>();
-            //services.AddSingleton<IActivityService, ActivityService>();
+            services.AddSingleton<IActivityService, ActivityService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
