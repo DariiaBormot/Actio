@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Actio.Api.Handlers;
+using Actio.Common.Auth;
 using Actio.Common.Events;
 using Actio.Common.Mongo;
 using Actio.Common.RabbitMq;
@@ -31,13 +32,9 @@ namespace Actio.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers();
-            //services.AddRabbitMq(Configuration);
-            //services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
-
             services.AddControllers();
             services.AddLogging();
-            //services.AddJwt(Configuration);
+            services.AddJwt(Configuration);
             services.AddRabbitMq(Configuration);
             services.AddMongoDB(Configuration);
             services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
