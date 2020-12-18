@@ -5,8 +5,6 @@ using Actio.Services.Identity.Services;
 using Microsoft.Extensions.Logging;
 using RawRabbit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Actio.Services.Identity.Handlers

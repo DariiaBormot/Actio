@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Actio.Api.Handlers;
 using Actio.Api.Repositories;
 using Actio.Common.Auth;
@@ -10,12 +6,9 @@ using Actio.Common.Mongo;
 using Actio.Common.RabbitMq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 
 namespace Actio.Api
 {
@@ -37,8 +30,8 @@ namespace Actio.Api
             services.AddRabbitMq(Configuration);
             services.AddMongoDB(Configuration);
             services.AddSingleton<IEventHandler<ActivityCreated>, ActivityCreatedHandler>();
-            //services.AddSingleton<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
-            //services.AddSingleton<IEventHandler<UserCreated>, UserCreatedHandler>();
+            services.AddSingleton<IEventHandler<UserAuthenticated>, UserAuthenticatedHandler>();
+            services.AddSingleton<IEventHandler<UserCreated>, UserCreatedHandler>();
             services.AddSingleton<IActivityRepository, ActivityRepository>();
         }
 
@@ -50,7 +43,7 @@ namespace Actio.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            //app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
+            app.ApplicationServices.GetService<IDatabaseInitializer>().InitializeAsync();
 
             app.UseHttpsRedirection();
 

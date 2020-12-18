@@ -34,7 +34,7 @@ namespace Actio.Common.Auth
             _jwtHeader = new JwtHeader(_signingCredentials);
             _tokenValidationParameters = new TokenValidationParameters
             {
-                ValidateAudience = false, // Don't care which end client will be authenticated
+                ValidateAudience = false, // Dosen't care which end client will be authenticated
                 ValidIssuer = _options.Issuer,
                 IssuerSigningKey = _issuerSigningKey
             };

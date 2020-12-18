@@ -33,7 +33,7 @@ namespace Actio.Services.Identity.Tests.Integration.Controlles
         [Fact]
         public async Task account_controller_register_should_return_accepted()
         {
-            var payload = GetPayload(new { email = "user1@email.com", name = "anton", password = "test1234" });
+            var payload = GetPayload(new { email = "user1@email.com", name = "daria", password = "test1234" });
             var response = await _apiClient.PostAsync(@"users/register", payload);
             response.EnsureSuccessStatusCode();
         }

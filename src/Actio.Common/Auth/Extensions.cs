@@ -23,7 +23,7 @@ namespace Actio.Common.Auth
                     cfg.SaveToken = true;
                     cfg.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                     {
-                        ValidateAudience = false, // Don't care which end client will be authenticated
+                        ValidateAudience = false, // dosen't care which end client will be authenticated
                         ValidIssuer = options.Issuer,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey))
                     };

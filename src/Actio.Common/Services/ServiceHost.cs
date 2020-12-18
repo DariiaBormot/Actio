@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using RawRabbit;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Actio.Common.Services
 {
